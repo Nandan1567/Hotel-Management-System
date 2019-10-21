@@ -28,4 +28,3 @@ class ManagerTestcase(TestCase):
     def manager_Test(self):
         manager1=Manager.objects.get(guest_name='nandan')
         self.assertEqual(manager1.guest_name,'nandan')
-        
