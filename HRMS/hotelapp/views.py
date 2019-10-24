@@ -1,11 +1,12 @@
 from django.http import Http404
 from django.shortcuts import render
-from rest_framework import viewsets
+from rest_framework import viewsets, generics
 from .serializers import *
 from .models import *
 from rest_framework import status
 from rest_framework.response import Response
 from rest_framework.decorators import api_view
+
 
 #
 # class HotelGuestView(viewsets.ModelViewSet):
@@ -68,8 +69,36 @@ def api_room_delete_view(request, pk):
         data = {}
         if operation:
             data['success'] = 'delete successful'
-        else:
-            data['fails'] = 'delete unsuccessful'
-            return Response(status.HTTP_200_OK)
-        return Response(data,status=status.HTTP_400_BAD_REQUEST)
+            return Response(data, status.HTTP_200_OK)
 
+
+@api_view(['POST', ])
+def api_room_PO_view(request, pk):
+    if request.method == 'POST':
+        try:
+            guest = Room.objects.get(add_room=pk)
+        except Room.DoesNotExist:
+            return Response(status.HTTP_404_NOT_FOUND)
+        else:
+            serializer = RoomSerializers(guest, data=request.data)
+            if serializer.is_valid():
+                serializer.save()
+                return Response(status.HTTP_200_OK)
+            return Response(status.HTTP_400_BAD_REQUEST)
+
+
+@api_view(['GET', ])
+def api__guest_list_view(request):
+    guest = Hotel_Guest.objects.all()
+    if request.method == 'GET':
+        serializer = Hotel_guestSerializers(guest, many=True)
+    return Response(serializer.data)
+
+
+class Hotel_GuestList(generics.ListCreateAPIView):
+    queryset = Room.objects.all()
+    serializer_class = RoomSerializers
+
+    # def get_queryset(self):
+    #     guest = self.request.
+    #     return guest.objects.all()

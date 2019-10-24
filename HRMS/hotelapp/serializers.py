@@ -1,21 +1,23 @@
 from rest_framework import serializers
+
+import hotelapp
 from .models import *
+
+class RoomSerializers(serializers.ModelSerializer):
+    class Meta:
+        model = Room
+        fields = ('Room_type', 'add_room','room_number','available')
 
 
 class Hotel_guestSerializers(serializers.ModelSerializer):
-    class Meta:
+    roomType = RoomSerializers()
 
+    class Meta:
         model = Hotel_Guest
-        fields = ('govt_id','guest_name', 'Guest_members')
-class RoomSerializers(serializers.ModelSerializer):
-    class Meta:
+        fields = ('govt_id', 'guest_name', 'Guest_members', 'roomType','guest_phone_number','guest_address','bookingdate','returndate')
 
-        model = Room
-        fields = ('Room_type','add_room')
 
 class ManagerSerializers(serializers.ModelSerializer):
     class Meta:
-
         model = Manager
-        fields = ('roomnumber','room_type')
-
+        fields = ('roomnumber', 'room_type')
