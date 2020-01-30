@@ -16,6 +16,8 @@ class Hotel_Guest(models.Model):
     Guest_members = models.IntegerField()
     guest_phone_number = models.IntegerField()
     guest_address = models.CharField(max_length=200)
+    bookingdate=models.DateField()
+    returndate=models.DateField()
 
     def __str__(self):
         return self.guest_name
