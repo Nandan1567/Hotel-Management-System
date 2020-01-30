@@ -1,10 +1,10 @@
 # Hotel-Management-System
-The Library Management System is an application forassisting a librarian in managing a book library in auniversity. The system would provide basic set of features to add/update ,
+Hotel Management System is a software system where the management of entire hotel is computerized.
 
 Further explanations and assumptions:
 
-1.member can be borrowed the books
-2.increment and decrement the stock
+1.one user can book one room
+2.one room can have only 3 members not more then 3
 
 ### Prerequisites
 
@@ -25,7 +25,7 @@ djangorestframework==3.11.0
 Clone the repository
 
 ```
-git clone https://github.com/Nandan1567/Library_Management_System.git
+git clone https://github.com/Nandan1567/Hotel-Management-System.git
 ```
 
 Setting up your virtual environment:
@@ -40,13 +40,13 @@ Activating Virtual  Environment
 source .env/bin/activate
 ```
 
-Once the repository is cloned and virtual environment set up, go to the directory where the requirements.txt(Library_Management_System/) is and type the following code in your terminal:
+Once the repository is cloned and virtual environment set up, go to the directory where the requirements.txt(Hotel-Management-System/) is and type the following code in your terminal:
 
 ```
 pip install requirements.txt
 ```
 
-Then to run the server, go to the directory 'Library_Management_System/library' and type the following code in terminal:
+Then to run the server, go to the directory 'Hotel-Management-System/HRMS' and type the following code in terminal:
 
 ```
 python3 manage.py runserver
