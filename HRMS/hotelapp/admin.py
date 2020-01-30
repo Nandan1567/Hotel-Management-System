@@ -5,7 +5,7 @@ from .models import Room, Manager, Booking_records, Hotel_Guest
 
 
 class RoomAdmin(admin.ModelAdmin):
-    list_display = ('Room_type',)
+    list_display = ('Room_type','add_room','room_number','available')
     ordering = ['Room_type']
 
 
@@ -48,8 +48,8 @@ class ManagerAdminForm(forms.ModelForm):
     def clean(self):
         member = self.cleaned_data.get('guset')
         member1 = self.cleaned_data.get('roomnumber')
-        if member.roomType.add_room != member1:
-            raise forms.ValidationError(f'room is not available', code='invalide')
+        if member.roomType.add_room == member1:
+            raise forms.ValidationError(f'room is  available', code='invalide')
         return self.cleaned_data
 
     def save(self, commit=True):
